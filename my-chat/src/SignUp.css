@@ -1,0 +1,17 @@
+.sign-up {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign-up > form> h2 {
+    font-size: 25px;
+    margin-bottom: 30px;
+    font-weight: 500;
+    text-align: left;
+}
+
+.sign-up > form > button {
+    margin-top: 30px;
+}
