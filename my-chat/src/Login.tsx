@@ -49,7 +49,7 @@ export default function Login() {
     return (
         <section className="login">
             <h1>Login Page</h1>
-            <form method="POST">
+            <form method="POST" className="signup-login">
                 <div className="inputs">
                 <div className="single-input">
                     <label htmlFor={inputEmailId}>Email:</label>
@@ -65,9 +65,10 @@ export default function Login() {
                 <button type="submit" disabled={loading} onClick={(e) => signIn(e)}>Sign In</button>
                 {loading && <h1>loading...</h1>}
                 {loggedIn && <Navigate to="/" />}
-                <p>No Account? <Link to="/signup">Sign Up Now</Link> </p>
+
                 
             </form>
+            <p>No Account? <Link to="/signup">Sign Up Now</Link> </p>
 
 
 

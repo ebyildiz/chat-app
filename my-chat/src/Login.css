@@ -6,45 +6,17 @@ section.login {
     gap: 20px;
 }
 
-h1 {
-    font-size: 45px;
-}
 
-form {
+form.signup-login {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: white;
-}
-
-input {
-    width: 200px;
-    padding: 10px;
+    color: rgb(247, 130, 218);
+    padding: 40px;
+    padding-bottom: 15px;
+    background-color: rgb(255, 232, 255);
     border-radius: 20px;
-    border: none;
-    cursor: pointer;
-    color: rgb(247, 130, 218) ;
-    font-size: 16px;
-
-}
-
-form > button {
-    background-color:rgb(247, 130, 218) ;
-    color: white;
-    border: none;
-    padding: 15px;
-    border-radius: 30px;
-    cursor: pointer;
-    margin-bottom: 50px;
-    padding-right: 50px;
-    padding-left: 50px;
-    font-size: 16px;
-}
-
-form > button:hover {
-    opacity: 80%;
-    
 }
 
 div.inputs {
@@ -67,17 +39,3 @@ div.single-input {
     margin-bottom: 20px;
 }
 
-a {
-    text-decoration: underline;
-    color: white;
-    padding: 10px;
-    border-radius: 30px;
-    font-size: 16px;
-    padding: 15px;
-    margin-left: 10px;
-
-}
-
-a:hover {
-    opacity: 80%;
-}

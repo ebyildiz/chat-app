@@ -2,9 +2,60 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  background-color: rgb(244, 163, 215);
+  background-color: rgb(249, 156, 226);
   color: white;
   font-size: 16px;
 
+}
+
+h1 {
+  font-size: 35px;
+}
+
+button {
+  background-color:rgb(247, 130, 218) ;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-bottom: 50px;
+  padding-right: 50px;
+  padding-left: 50px;
+  font-size: 16px;
+}
+
+button:hover {
+  opacity: 80%;
+}
+
+input {
+  width: 200px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1.5px solid rgb(247, 130, 218);
+  color: rgb(247, 130, 218) ;
+  font-size: 16px;
+
+}
+
+input:focus {
+  border: 2px solid rgb(252, 72, 207);
+  outline: none;
+}
+
+a {
+  text-decoration: underline;
+  color: white;
+  padding: 10px;
+  border-radius: 30px;
+  font-size: 16px;
+  padding: 15px;
+  margin-left: 10px;
+
+}
+
+a:hover {
+  opacity: 80%;
 }
 
