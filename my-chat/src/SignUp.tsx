@@ -25,6 +25,14 @@ export default function SignUp() {
             setValue(e.target.value)
         }
     }
+
+    function keyPress(e) {
+        if (e.key==="Enter"){
+            e.preventDefault()
+            signUp()
+        }
+        
+    }
     
 
     return (
@@ -36,7 +44,7 @@ export default function SignUp() {
             <label htmlFor={emailId}>Email:</label>
             <input type="email" id={emailId}  value={email} onChange={(e)=>inputChange(e, setEmail)}/>
             <label htmlFor={passwordId}>Password:</label>
-            <input type="password" id={passwordId}  value={password} onChange={(e)=>inputChange(e, setPassword)}/>
+            <input type="password" id={passwordId}  value={password} onChange={(e)=>inputChange(e, setPassword)} onKeyDown={keyPress}/>
             <button type="submit" onClick={signUp}>Sign Up</button>
             {signedUp && <Navigate to="/"/>}
 
