@@ -1,6 +1,6 @@
 import React, { useState, useId, useRef } from "react"
 import "./Login.css"
-import {Navigate, Link} from "react-router"
+import { Navigate, Link } from "react-router"
 
 export default function Login() {
 
@@ -23,7 +23,7 @@ export default function Login() {
         console.log("onchange runs")
     }
 
-    function keyDown(event:React.KeyboardEvent<HTMLInputElement>):void {
+    function keyDown(event: React.KeyboardEvent<HTMLInputElement>): void {
         if (event.key === "Enter") {
             event.preventDefault()
             if (emailRef) {
@@ -36,7 +36,7 @@ export default function Login() {
         }
     }
 
-    function signIn(e :React.MouseEvent<HTMLButtonElement, MouseEvent> | React.KeyboardEvent<HTMLInputElement>): void {
+    function signIn(e: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.KeyboardEvent<HTMLInputElement>): void {
         e.preventDefault()
         setLoading(true)
         console.log("signed in!")
@@ -48,20 +48,28 @@ export default function Login() {
 
     return (
         <section className="login">
-            <h1>Login Page!</h1>
+            <h1>Login Page</h1>
             <form method="POST">
-                <label htmlFor={inputEmailId}>Email:</label>
-                <input type="email" value={email} id={inputEmailId} onChange={(event) => onChange(event, setEmail) } onKeyDown={keyDown} ref={emailRef} />
-                <label htmlFor={inputPasswordId}>Password:</label>
-                <input type="password" id={inputPasswordId} value={password} onChange={(event) => onChange(event, setPassword)} onKeyDown={keyDown} ref={passwordRef} />
-                <button type="submit" disabled={loading} onClick={(e)=>signIn(e)}>Sign In</button>
+                <div className="inputs">
+                <div className="single-input">
+                    <label htmlFor={inputEmailId}>Email:</label>
+                    <input type="email" value={email} id={inputEmailId} onChange={(event) => onChange(event, setEmail)} onKeyDown={keyDown} ref={emailRef} />
+                </div>
+                <div className="single-input">
+                    <label htmlFor={inputPasswordId}>Password:</label>
+                    <input type="password" id={inputPasswordId} value={password} onChange={(event) => onChange(event, setPassword)} onKeyDown={keyDown} ref={passwordRef} />
+                </div>
+
+                </div>
+
+                <button type="submit" disabled={loading} onClick={(e) => signIn(e)}>Sign In</button>
                 {loading && <h1>loading...</h1>}
                 {loggedIn && <Navigate to="/" />}
-                <p>No Account?</p>
-                <Link to="/signup">Sign Up Now</Link>
+                <p>No Account? <Link to="/signup">Sign Up Now</Link> </p>
+                
             </form>
-            
-            
+
+
 
         </section>
 

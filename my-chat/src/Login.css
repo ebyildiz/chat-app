@@ -1,8 +1,13 @@
 section.login {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+h1 {
+    font-size: 45px;
 }
 
 form {
@@ -10,4 +15,69 @@ form {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: white;
+}
+
+input {
+    max-width: 500px;
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    color: rgb(247, 130, 218) ;
+    font-size: 16px;
+
+}
+
+form > button {
+    background-color:rgb(247, 130, 218) ;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-bottom: 50px;
+    padding-right: 50px;
+    padding-left: 50px;
+    font-size: 16px;
+}
+
+form > button:hover {
+    opacity: 80%;
+    
+}
+
+div.inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+label {
+    width: 150px;
+    text-align: left;
+}
+
+div.single-input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+a {
+    text-decoration: underline;
+    color: white;
+    padding: 10px;
+    border-radius: 30px;
+    font-size: 16px;
+    padding: 15px;
+    margin-left: 10px;
+
+}
+
+a:hover {
+    opacity: 80%;
 }
