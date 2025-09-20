@@ -1,6 +1,6 @@
-import {Navigate, Outlet} from "react-router"
+import {Navigate, Outlet} from "react-router-dom"
+import {auth} from "../lib/firebase"
 
 export default function Protected() {
-    const token = localStorage.getItem("token"); // Or your auth state
-    return token ? <Outlet /> : <Navigate to="/login" />;
+    return auth.currentUser ? <Outlet /> : <Navigate to="/login" />;
 }

@@ -66,3 +66,14 @@ a:hover {
   opacity: 80%;
 }
 
+
+.error-message {
+  background-color: rgb(238, 66, 66);
+  font-size: 14px;
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+  min-width: 250px;
+  max-width: 500px;
+  margin-top:-13px
+}
