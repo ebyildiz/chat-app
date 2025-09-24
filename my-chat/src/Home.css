@@ -1,0 +1,130 @@
+/* cute pink theme — Home page / layout */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Poppins:wght@500;700&display=swap");
+
+/* :root{
+  --pink-50:  #fff0f7;
+  --pink-100: #ffd6ea;
+  --pink-200: #ffc2e2;
+  --pink-300: #ffabd6;
+  --pink-400: #ff8cc7;
+  --pink-500: #ff6bb7;
+  --pink-600: #ff4ba7;
+  --ink: #5b2c48;
+  --card: rgba(255,255,255,.65);
+  --edge: rgba(255, 105, 180, .18);
+  --shadow: 0 10px 30px rgba(255, 105, 180, .25);
+} */
+
+html, body, #root { height: 100%; }
+body{
+  margin: 0;
+  font-family: "Nunito", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+  background:
+    radial-gradient(1200px 700px at 10% -10%, var(--pink-100), transparent 60%),
+    radial-gradient(900px 600px at 100% 0%, var(--pink-200), transparent 60%),
+    linear-gradient(180deg, var(--pink-50), var(--pink-100));
+}
+
+/* Header layout */
+.home-header{
+    width: min(1100px, 92vw);
+    margin: 28px auto 10px;         /* centers the whole header block */
+    padding: 0 4px;
+    display: flex;
+    align-items: center;            /* vertical alignment */
+    justify-content: space-between; /* title on left, button on right */
+    gap: 16px;
+  }
+  .home-header h1{
+    margin: 0;                      
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    letter-spacing: .5px;
+    color: rgb(255, 255, 255);
+  }
+  
+  /* Sign out button in header */
+  .home-header button{
+    font: inherit;
+    font-size: 15px;
+    background: var(--card);
+    border: 1px solid var(--edge);
+    padding: 10px 18px;
+    border-radius: 20px;
+    color: #5b2c48;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: transform .08s ease, background .2s ease;
+  }
+  .home-header button:hover{ transform: translateY(-1px); background: #fff; }
+  
+
+/* main chat shell */
+.chat-container{
+  width: min(1100px, 92vw);
+  height: calc(100vh - 150px);
+  margin: 0 auto 24px;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 16px;
+}
+
+/* sidebar */
+.chat-side-bar{
+  background: var(--card);
+  border: 1px solid var(--edge);
+  backdrop-filter: blur(8px);
+  border-radius: 18px;
+  padding: 14px 12px;
+  box-shadow: var(--shadow);
+  overflow: hidden auto;
+}
+
+/* room items (you render <h3>) */
+.chat-side-bar h3{
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background .15s ease, transform .06s ease;
+}
+.chat-side-bar h3 + h3{ margin-top: 6px; }
+.chat-side-bar h3:hover{ background: rgba(255,255,255,.9); }
+.chat-side-bar h3:active{ transform: scale(.98); }
+
+/* optional: highlight selected room if you add a className="active" */
+.chat-side-bar h3.active{
+  background: linear-gradient(180deg, #fff, #ffe8f3);
+  border: 1px solid var(--edge);
+  box-shadow: inset 0 1px 0 #fff, 0 6px 16px rgba(255, 105, 180, .18);
+}
+
+/* right pane (ChatPage root fills this) */
+.chat-main, .texts-page{
+  min-width: 0;
+}
+
+/* cute scrollbar everywhere */
+.chat-side-bar::-webkit-scrollbar,
+.texts-page .messages::-webkit-scrollbar{
+  width: 10px;
+}
+.chat-side-bar::-webkit-scrollbar-thumb,
+.texts-page .messages::-webkit-scrollbar-thumb{
+  background: linear-gradient(180deg, var(--pink-400), var(--pink-500));
+  border-radius: 999px;
+  border: 2px solid rgba(255,255,255,.7);
+}
+
+.new-chat-button{
+    margin-top: auto;               /* stick to bottom */
+    padding: 10px 14px;
+    border-radius: 14px;
+    cursor: pointer;
+    color: #5b2c48;
+    background-color: white;
+  }
+  .new-chat-button:hover{ background:#fff; }

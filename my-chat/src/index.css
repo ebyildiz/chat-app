@@ -8,10 +8,6 @@
 
 }
 
-h1 {
-  font-size: 35px;
-}
-
 button {
   background-color:rgb(247, 130, 218) ;
   color: white;
@@ -19,7 +15,6 @@ button {
   padding: 15px;
   border-radius: 30px;
   cursor: pointer;
-  margin-bottom: 50px;
   padding-right: 50px;
   padding-left: 50px;
   font-size: 16px;

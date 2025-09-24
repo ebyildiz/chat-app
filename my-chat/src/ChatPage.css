@@ -1,0 +1,112 @@
+/* cute pink theme — Chat page (scoped to .texts-page only) */
+:root{
+    --card: rgba(255,255,255,.72);
+    --edge: rgba(255, 105, 180, .18);
+    --shadow: 0 10px 30px rgba(255, 105, 180, .22);
+    --ink: #5b2c48;
+    --accent: #ff6bb7;
+    --accent-2: #ff94cb;
+  }
+  
+  .texts-page{
+    display: grid;
+    grid-template-rows: 64px 1fr auto;
+    height: 100%;
+    background: var(--card);
+    border: 1px solid var(--edge);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+  }
+  
+  /* header */
+  .texts-page > header{
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--edge);
+  }
+  .texts-page > header h1{
+    margin: 0;
+    font-size: 1.05rem;
+    letter-spacing: .3px;
+    color: var(--ink);
+  }
+  
+  /* messages scroller */
+  .texts-page > .messages,
+  .texts-page > div{            /* keeps working with your current markup */
+    overflow-y: auto;
+    padding: 16px 18px 10px;
+  }
+  
+  /* message bubble */
+  .texts-page > div > div{
+    background: #fff;
+    border: 1px solid rgba(255, 105, 180, .12);
+    border-radius: 14px;
+    padding: 8px 12px;
+    margin: 10px 0;
+    box-shadow: 0 6px 14px rgba(255, 105, 180, .12);
+  }
+  
+  /* meta row */
+  .texts-page > div > div > div:first-child{
+    font-size: 12px;
+    opacity: .7;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  
+  /* message text */
+  .texts-page > div > div > div:last-child{
+    white-space: pre-wrap;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  
+  /* input row */
+  .texts-page form{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    padding: 12px;
+    border-top: 1px solid var(--edge);
+    background: linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,.9));
+    border-radius: 0 0 20px 20px;
+  }
+  
+  .texts-page textarea{
+    resize: none;
+    min-height: 44px;
+    max-height: 160px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,.06);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.9);
+    outline: none;
+    font: inherit;
+    color: var(--ink);
+    background: #fff;
+  }
+  .texts-page textarea:focus{
+    border-color: var(--accent-2);
+    box-shadow: 0 0 0 3px rgba(255, 148, 203, .25);
+  }
+  
+  .texts-page button[type="submit"]{
+    border: 0;
+    padding: 0 18px;
+    border-radius: 12px;
+    background: linear-gradient(180deg, var(--accent-2), var(--accent));
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    min-width: 96px;
+    box-shadow: 0 10px 18px rgba(255, 105, 180, .25);
+    transition: transform .06s ease, filter .15s ease;
+  }
+  .texts-page button[type="submit"]:hover{ filter: brightness(1.05); cursor: pointer; }
+  .texts-page button[type="submit"]:active{ transform: translateY(1px); }
+  .texts-page button[disabled]{ opacity: .6; cursor: default; box-shadow: none; }
+  

@@ -6,9 +6,9 @@ import { auth } from "../lib/firebase";
 export default function GuestOnly() {
   const [hydrated, setHydrated] = useState(false);
   useEffect(() => {
-    const t = setTimeout(() => setHydrated(true), 300); // small hydrate wait
+    const t = setTimeout(() => setHydrated(true), 300); 
     return () => clearTimeout(t);
   }, []);
-  if (!hydrated) return null; // or a tiny loader
+  if (!hydrated) return null;
   return auth.currentUser ? <Navigate to="/" replace /> : <Outlet />;
 }

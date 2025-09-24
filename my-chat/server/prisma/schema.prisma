@@ -6,7 +6,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
 }
 
 datasource db {
@@ -14,34 +13,63 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// User stays mostly the same
 model User {
-  uid        String   @id
-  username   String   @unique
+  uid         String    @id                // Firebase uid
+  username    String    @unique
   displayName String?
-  createdAt  DateTime @default(now())
+  createdAt   DateTime  @default(now())
 
-  messages   Message[]
+  messages    Message[]
+  memberships UserRoom[]                   // <-- user's rooms
 }
 
 model Room {
-  id         String   @id       
-  name       String
-  createdAt  DateTime @default(now())
+  id            String     @id            // e.g. "general"
+  name          String
+  createdAt     DateTime   @default(now())
+  lastMessageAt DateTime   @default(now()) // <-- for sorting by latest activity
+  // (optional) lastMessageText String? @db.VarChar(200)
+  // (optional) lastMessageSenderUid String?
 
-  messages   Message[]
+  messages      Message[]
+  memberships   UserRoom[]
+
+  @@index([lastMessageAt])                // fast "recent rooms" queries
 }
 
 model Message {
   id         String   @id @default(cuid())
   roomId     String
-  room       Room     @relation(fields: [roomId], references: [id])
+  room       Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
 
   senderUid  String
-  sender     User     @relation(fields: [senderUid], references: [uid])
+  sender     User     @relation(fields: [senderUid], references: [uid], onDelete: Cascade)
 
   text       String
   createdAt  DateTime @default(now())
 
-  @@index([roomId, createdAt])
+  @@index([roomId, createdAt])           // fetch recent messages per room
 }
 
+// Join table (membership)
+model UserRoom {
+  userUid    String
+  roomId     String
+  role       RoomRole @default(MEMBER)    // e.g. MEMBER / ADMIN
+  joinedAt   DateTime @default(now())
+  lastReadAt DateTime?                    // for unread counts later
+  pinned     Boolean  @default(false)
+  archived   Boolean  @default(false)
+
+  user User @relation(fields: [userUid], references: [uid], onDelete: Cascade)
+  room Room @relation(fields: [roomId], references: [id], onDelete: Cascade)
+
+  @@id([userUid, roomId])                // composite PK
+  @@index([roomId])                      // handy reverse lookups
+}
+
+enum RoomRole {
+  MEMBER
+  ADMIN
+}
