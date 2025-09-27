@@ -10,7 +10,7 @@
   
   .texts-page{
     display: grid;
-    grid-template-rows: 64px 1fr auto;
+    grid-template-rows: 1fr auto;
     height: 100%;
     background: var(--card);
     border: 1px solid var(--edge);
@@ -34,23 +34,31 @@
     color: var(--ink);
   }
   
-  /* messages scroller */
+  /* messages scroller - FIXED: one-column grid that grows per message */
   .texts-page > .messages,
   .texts-page > div{            /* keeps working with your current markup */
     overflow-y: auto;
     padding: 16px 18px 10px;
+    display: grid;
+    grid-auto-rows: max-content;
+    grid-auto-flow: row;
+    row-gap: 8px;
   }
   
-  /* message bubble */
+  /* message bubble - FIXED: shrink-to-fit and safe max width */
   .texts-page > div > div{
+    position: relative;
+    width: auto;
+    max-width: min(400px, 100% - 20px);
+    text-wrap: wrap;
     background: #fff;
     border: 1px solid rgba(255, 105, 180, .12);
     border-radius: 14px;
-    padding: 8px 12px;
-    margin: 10px 0;
+    padding: 12px 70px;
+    margin: 20px 20px;
     box-shadow: 0 6px 14px rgba(255, 105, 180, .12);
   }
-  
+
   /* meta row */
   .texts-page > div > div > div:first-child{
     font-size: 12px;
@@ -59,11 +67,14 @@
     margin-bottom: 2px;
   }
   
-  /* message text */
+  /* message text - FIXED: prevent long words from pushing layout */
   .texts-page > div > div > div:last-child{
     white-space: pre-wrap;
+    overflow-wrap: anywhere;
     line-height: 1.4;
     color: var(--ink);
+    text-align: left;
+    flex-wrap: wrap;
   }
   
   /* input row */
@@ -110,4 +121,37 @@
   .texts-page button[type="submit"]:hover{ filter: brightness(1.05); cursor: pointer; }
   .texts-page button[type="submit"]:active{ transform: translateY(1px); }
   .texts-page button[disabled]{ opacity: .6; cursor: default; box-shadow: none; }
+
+  /* FIXED: alignment without implicit grid columns */
+  .my-text   { justify-self: end;  grid-column: 1; }
+  .other-text{ justify-self: start; grid-column: 1; }
   
+  /* My text (right side) pointer */
+  .my-text::after {
+    content: "";
+    position: absolute;
+    right: -3px;    /* adjust how far it sticks out */
+    bottom: 6px;    /* aligns with the bottom corner */
+    width: 14px;
+    height: 14px;
+    background: #fff; /* same as bubble background */
+    border-left: none;
+    border-top: none;
+    transform: rotate(45deg);
+    border-bottom-right-radius: 4px;
+  }
+  
+  /* Other people's text (left side) pointer */
+  .other-text::before {
+    content: "";
+    position: absolute;
+    left: -3px;
+    bottom: 6px;
+    width: 14px;
+    height: 14px;
+    background: #fff;
+    border-right: none;
+    border-top: none;
+    transform: rotate(45deg);
+    border-bottom-left-radius: 4px;
+  }

@@ -120,7 +120,12 @@ body{
 }
 
 .new-chat-button{
-    margin-top: auto;               /* stick to bottom */
+    margin-top: 10px;  
+    position: fixed;             /* stick to bottom */
+    bottom: 0;
+    right: 27%;
+    margin-bottom: 30px;
+    place-self: center;
     padding: 10px 14px;
     border-radius: 14px;
     cursor: pointer;

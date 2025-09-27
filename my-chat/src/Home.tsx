@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
+import { io, Socket } from "socket.io-client";
 import { auth } from "./lib/firebase";
 import { authFetch } from "./lib/authFetch";
 import { useEffect, useState } from "react";
@@ -15,6 +16,49 @@ export default function Home() {
     const [roomId, setRoomId] = useState<string | null>(null);
     const [roomName, setRoomName] = useState<string | null>(null);
     const [showNew, setShowNew] = useState<boolean>(false);
+    const user = auth.currentUser;
+
+    const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
+
+    if (user) {
+    const uid = user.uid;
+    console.log("Current user UID:", uid);
+    } else {
+    console.log("No user signed in.");
+    }
+
+    useEffect(() => {
+        let cancelled = false;
+        let socket: Socket | null = null;
+      
+        (async () => {
+          const token = await auth.currentUser?.getIdToken();
+          if (!token || cancelled) return;
+      
+          socket = io(API_URL, { auth: { token }, transports: ["websocket"] });
+      
+          const handler = () => { void getRooms(); }; // reuse your existing getRooms
+          socket.on("rooms_refresh", handler);
+        })();
+      
+        return () => {
+          cancelled = true;
+          if (socket) {
+            socket.removeAllListeners("rooms_refresh");
+            socket.disconnect();
+          }
+        };
+      }, [auth.currentUser?.uid]);
+
+      useEffect(() => {
+        const onVis = () => {
+          if (document.visibilityState === "visible") { void getRooms(); }
+        };
+        document.addEventListener("visibilitychange", onVis);
+        return () => document.removeEventListener("visibilitychange", onVis);
+      }, []);
+      
+      
 
 
     async function getRooms() {
@@ -82,7 +126,7 @@ export default function Home() {
                     {rooms.map(r => (
                         <h3
                             key={r.id}
-                            onClick={() => { setRoomId(r.id); setRoomName(r.name); }}
+                            onClick={() => { setRoomId(r.id); setRoomName(r.name); setShowNew(false)}}
                             style={{ cursor: "pointer", fontWeight: r.id === roomId ? 700 : 400 }}
                         >
                             {r.name}
@@ -90,18 +134,18 @@ export default function Home() {
                     ))}
                     <button className="new-chat-button" onClick={() => setShowNew(true)}>+ New Chat</button>
                 </aside>
-                {/* modal */}
+
                 <NewChatModal
                     open={showNew}
                     onClose={() => setShowNew(false)}
                     onSelect={handleSelectUser} />
 
                 <main className="chat-main">
-                    {roomId && roomName ? (
-                        <ChatPage roomId={roomId} roomName={roomName} />
+                    {showNew? null : (roomId && roomName ? (
+                        <ChatPage roomId={roomId} roomName={roomName} myUid={user?.uid ?? "other"}/>
                     ) : (
                         <p style={{ padding: 16 }}>Pick a room to start chatting.</p>
-                    )}
+                    ))}
                 </main>
             </section>
         </div>
