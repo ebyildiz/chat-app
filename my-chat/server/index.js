@@ -1,6 +1,5 @@
 import { PrismaClient } from "@prisma/client";
 import express from "express";
-import serviceAccount from "./serviceAccount.json" with { type: "json" };
 import { randomUUID } from "node:crypto";
 import admin from "firebase-admin";
 import cors from "cors";
@@ -11,7 +10,15 @@ if (!admin.apps.length) {
     admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
 }
 
-const PORT = 8000;
+const serviceJson = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_JSON);
+if (!admin.apps.length) {
+  admin.initializeApp({ credential: admin.credential.cert(serviceJson) });
+}
+
+// and listen on provided port:
+const PORT = process.env.PORT || 8000;
+httpServer.listen(PORT, () => console.log("server is running"));
+
 const app = express();
 const prisma = new PrismaClient();
 
