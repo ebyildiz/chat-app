@@ -1,46 +1,57 @@
-# MyCuteChat
+<!-- Pink wrapper (note: GitHub won't let us change the whole page bg, but this keeps the theme) -->
+<div style="background:#ff4da6;color:#ffffff;padding:24px 24px 12px;border-radius:14px">
 
-![theme](https://img.shields.io/badge/theme-pink-ff4da6?logoColor=white&labelColor=1a1a1a)
-![stack](https://img.shields.io/badge/stack-React%20·%20Express%20·%20Postgres%20·%20Socket.IO-ff4da6?labelColor=1a1a1a&color=ff4da6)
-![auth](https://img.shields.io/badge/auth-Firebase-ff4da6?labelColor=1a1a1a)
+<!-- Hero -->
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="120">
+  <rect width="100%" height="100%" fill="#ff4da6"/>
+  <text x="50%" y="52%" dominant-baseline="middle" text-anchor="middle"
+        font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial"
+        font-size="38" fill="#fff" font-weight="700">MyCuteChat</text>
+  <text x="50%" y="82%" dominant-baseline="middle" text-anchor="middle"
+        font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial"
+        font-size="14" fill="#fff" opacity="0.9">React + Express + Postgres + Socket.IO · Firebase Auth</text>
+</svg>
 
-A small, friendly chat app I built to learn full-stack fundamentals and show real, working code:
-- **Frontend:** Vite + React + TypeScript (cute, pink UI)
-- **Backend:** Node/Express + Socket.IO
-- **Auth:** Firebase (ID tokens)
-- **DB:** Postgres (Neon) via Prisma
+<br />
 
-**Live app:** https://mycutechat.netlify.app  
+<p>
+  <a href="https://img.shields.io/badge/theme-pink-ff4da6?labelColor=1a1a1a"><img alt="theme" src="https://img.shields.io/badge/theme-pink-ff4da6?labelColor=1a1a1a"></a>
+  <a href="https://img.shields.io/badge/stack-React·Express·Postgres·Socket.IO-ff4da6?labelColor=1a1a1a"><img alt="stack" src="https://img.shields.io/badge/stack-React·Express·Postgres·Socket.IO-ff4da6?labelColor=1a1a1a"></a>
+  <a href="https://img.shields.io/badge/auth-Firebase-ff4da6?labelColor=1a1a1a"><img alt="auth" src="https://img.shields.io/badge/auth-Firebase-ff4da6?labelColor=1a1a1a"></a>
+</p>
+
+A small, friendly chat app I built to learn full-stack fundamentals and ship something real:
+**Vite + React + TypeScript** on the front, **Express + Socket.IO** in the middle, **Postgres (Neon) via Prisma** for data, and **Firebase Auth** for sign-in.
+
+**Live:** https://mycutechat.netlify.app  
 **API:** https://chat-app-brok.onrender.com
 
 ---
 
-## What this does (at a glance)
+## What it does (quick)
+- Sign up / sign in with Firebase (ID tokens).
+- Rooms + direct messages (DMs). DMs use a deterministic room id for a pair of users.
+- Send/receive messages in real time with Socket.IO.
+- All `/api/*` routes require a valid Firebase ID token.
+- Messages + memberships live in Postgres; Prisma manages the schema and queries.
 
-- Sign up / sign in with Firebase.  
-- Create rooms and send messages in realtime (Socket.IO).  
-- Direct messages use a deterministic room id for a pair of users.  
-- Server protects every `/api/*` call by verifying the Firebase ID token.  
-- Messages are stored in Postgres; Prisma handles schema + queries.  
-- CORS and sockets are locked to the frontend origin.
-
----
-
-## How it works (short version)
-
-1. The browser signs in with Firebase and gets an **ID token**.  
-2. Every request to `/api/*` sends `Authorization: Bearer <token>`.  
-3. Express verifies the token with **Firebase Admin** and ensures a `User` row exists in Postgres.  
-4. Sending a message writes a `Message` row and updates `Room.lastMessageAt`, then Socket.IO emits `new_message` to that room (and a `rooms_refresh` to members so sidebars update).  
-
-**Core tables:** `User`, `Room`, `Message`, `UserRoom` (membership).
+**Core tables:** `User`, `Room`, `Message`, `UserRoom`.
 
 ---
 
-## Local dev (quick start)
+## How it works (short)
+1. Browser signs in with Firebase → gets an **ID token**.  
+2. Every request to `/api/*` includes `Authorization: Bearer <token>`.  
+3. Express verifies with **Firebase Admin** and ensures a `User` row exists.  
+4. Posting a message inserts a `Message`, updates `Room.lastMessageAt`, then emits `new_message` to the room (and `rooms_refresh` to members so sidebars update).
 
+---
+
+## Local dev
+
+### Frontend
 ```bash
-# Frontend
 npm i
-cp .env.example .env  # fill in your VITE_* Firebase + API URL
+cp .env.example .env
+# Fill in VITE_* and API URL
 npm run dev
