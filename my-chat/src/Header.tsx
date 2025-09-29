@@ -3,7 +3,7 @@ import icon from "./images/icon.png"
 import React from "react"
 import {Link} from "react-router-dom"
 
-export default function Header({children} : {children:React.JSX.Element}) {
+export default function Header({children} : {children?:React.JSX.Element}) {
     return (
         <header className="main-header">
             <div>

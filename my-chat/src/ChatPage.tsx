@@ -14,7 +14,7 @@ type Message = Omit<MessageWire, "createdAt"> & { createdAt: Date };
 
 const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
 
-export default function ChatPage({ roomId, roomName, myUid }: ChatPageProps) {
+export default function ChatPage({ roomId, roomName }: ChatPageProps) {
     const [messages, setMessages] = useState<Message[]>([]);
     const [loading, setLoading] = useState(false);
     const [posting, setPosting] = useState(false);
@@ -82,7 +82,7 @@ export default function ChatPage({ roomId, roomName, myUid }: ChatPageProps) {
                 scrollToBottom();
             };
 
-            const onErr = (err: any) => {
+            const onErr = (err: Error) => {
                 if (cancelled) return;
                 console.error("socket error:", err?.message ?? err);
             };
