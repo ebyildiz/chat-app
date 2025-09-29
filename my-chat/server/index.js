@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { PrismaClient } from "@prisma/client";
 import express from "express";
 import { randomUUID } from "node:crypto";
@@ -6,39 +7,32 @@ import cors from "cors";
 import { createServer } from "node:http";
 import { Server } from "socket.io";
 
-if (!admin.apps.length) {
-    admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
-}
 
-const serviceJson = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_JSON);
-if (!admin.apps.length) {
-  admin.initializeApp({ credential: admin.credential.cert(serviceJson) });
-}
-
-// and listen on provided port:
+const ORIGIN = process.env.FRONTEND_ORIGIN || "http://localhost:5173";
 const PORT = process.env.PORT || 8000;
-httpServer.listen(PORT, () => console.log("server is running"));
 
+let svc;
+if (process.env.FIREBASE_SERVICE_ACCOUNT_JSON?.trim()) {
+  svc = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_JSON);
+} else {
+  svc = (await import("./serviceAccount.json", { with: { type: "json" } })).default;
+}
+if (typeof svc.private_key === "string") svc.private_key = svc.private_key.replace(/\\n/g, "\n");
+if (!admin.apps.length) admin.initializeApp({ credential: admin.credential.cert(svc) });
+
+
+// ---- app + io ----
 const app = express();
 const prisma = new PrismaClient();
-
-// ---- HTTP + Socket.IO ----
 const httpServer = createServer(app);
-const io = new Server(httpServer, { cors: { origin: "http://localhost:5173" } });
+const io = new Server(httpServer, { cors: { origin: ORIGIN } });
 
-// Basic request logger (helps detect double POSTs)
-app.use((req, _res, next) => {
-    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
-    next();
-});
+// basic request logger
+app.use((req, _res, next) => { console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`); next(); });
 
-app.use(
-    cors({
-        origin: "http://localhost:5173",
-        allowedHeaders: ["Content-Type", "Authorization"],
-    })
-);
+app.use(cors({ origin: ORIGIN, allowedHeaders: ["Content-Type", "Authorization"] }));
 app.use(express.json());
+
 
 // ---- Socket auth + room subscribe ----
 io.use(async (socket, next) => {
