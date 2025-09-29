@@ -5,6 +5,7 @@ import { signInWithEmailAndPassword } from "firebase/auth"
 import { auth } from './lib/firebase'
 import { FirebaseError } from "firebase/app"
 import { useNavigate } from "react-router-dom";
+import Header from "./Header"
 
 
 
@@ -89,6 +90,8 @@ export default function Login() {
 
 
     return (
+        <>
+        <Header/>
         <section className="login">
             <h1>Login Page</h1>
             <form method="POST" className="signup-login">
@@ -116,6 +119,7 @@ export default function Login() {
 
 
         </section>
+        </>
 
 
 

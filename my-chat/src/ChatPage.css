@@ -1,4 +1,4 @@
-/* cute pink theme — Chat page (scoped to .texts-page only) */
+
 :root{
     --card: rgba(255,255,255,.72);
     --edge: rgba(255, 105, 180, .18);
@@ -17,7 +17,7 @@
     border-radius: 20px;
     box-shadow: var(--shadow);
     backdrop-filter: blur(10px);
-    max-height: 670px;
+    max-height: 527px;
   }
   
   /* header */

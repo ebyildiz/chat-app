@@ -5,7 +5,8 @@
   background-color: rgb(249, 156, 226);
   color: white;
   font-size: 16px;
-
+  margin: 0;
+  padding: 0;
 }
 
 button {

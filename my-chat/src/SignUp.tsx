@@ -1,6 +1,7 @@
 import { Navigate } from "react-router-dom";
 import { useState, useId } from "react";
 import "./SignUp.css";
+import Header from "./Header";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db } from "./lib/firebase";
 import { FirebaseError } from "firebase/app";
@@ -187,6 +188,8 @@ export default function SignUp() {
     !username;
 
   return (
+    <>
+    <Header/>
     <section className="sign-up">
       <form className="signup-login" style={{ width: "500px" }}>
         <h2>Sign Up Form</h2>
@@ -243,5 +246,6 @@ export default function SignUp() {
         {signupError && <p className="error-message">{signupError}</p>}
       </form>
     </section>
+    </>
   );
 }

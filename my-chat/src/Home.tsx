@@ -6,6 +6,7 @@ import { authFetch } from "./lib/authFetch";
 import { useEffect, useState } from "react";
 import ChatPage from "./ChatPage";
 import NewChatModal from "./NewChatModal";
+import Header from "./Header";
 import "./Home.css";
 
 type RoomWire = { id: string; name: string; lastMessageAt: string };
@@ -115,11 +116,9 @@ export default function Home() {
     }
 
     return (
+        <>
+        <Header><button onClick={handleSignOut}>Sign Out</button></Header> 
         <div>
-            <div className="home-header">
-                <h1>Home Page</h1>
-                <button onClick={handleSignOut}>Sign Out</button>
-            </div>
             <section className="chat-container">
                 <aside className="chat-side-bar">
                     {rooms.length === 0 && <p>No rooms yet.</p>}
@@ -149,5 +148,6 @@ export default function Home() {
                 </main>
             </section>
         </div>
+        </>
     );
 }
