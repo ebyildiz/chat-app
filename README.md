@@ -1,4 +1,4 @@
-![Pink Banner](https://singlecolorimage.com/get/fac0e1/1000x10)
+![Pink Banner](https://singlecolorimage.com/get/fac0e1/1000x50)
 
 # MyCuteChat 💬
 
@@ -8,7 +8,7 @@ The stack: **Vite + React + TypeScript** on the front, **Express + Socket.IO** i
 🌸 Live app: [https://mycutechat.netlify.app](https://mycutechat.netlify.app)  
 🌸 API server: [https://chat-app-brok.onrender.com](https://chat-app-brok.onrender.com)
 
-![Pink Banner](https://singlecolorimage.com/get/fac0e1/1000x10)
+![Pink Banner](https://singlecolorimage.com/get/fac0e1/1000x5)
 
 ## What it does
 
@@ -21,7 +21,7 @@ The stack: **Vite + React + TypeScript** on the front, **Express + Socket.IO** i
 
 Core tables: `User`, `Room`, `Message`, `UserRoom`.
 
-![Pink Banner](https://singlecolorimage.com/get/fac0e1/1000x10)
+![Pink Banner](https://singlecolorimage.com/get/fac0e1/1000x5)
 
 ## Why I built it
 
