@@ -8,6 +8,8 @@ The stack: **Vite + React + TypeScript** on the front, **Express + Socket.IO** i
 🌸 Live app: [https://mycutechat.netlify.app](https://mycutechat.netlify.app)  
 🌸 API server: [https://chat-app-brok.onrender.com](https://chat-app-brok.onrender.com)
 
+![til](./app/assets/images/banner.png)
+
 ![Pink Banner](https://singlecolorimage.com/get/fac0e1/1000x2)
 
 ## What it does
