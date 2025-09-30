@@ -1,4 +1,5 @@
-<div style="background-color:#ffb6c1; color:white; padding:20px; border-radius:10px;">
+![Pink Banner](https://singlecolorimage.com/get/fac0e1/600x100)
+![Cute Badge](https://img.shields.io/badge/mood-cute-pink)
 
 # MyCuteChat 💬
 
@@ -32,5 +33,3 @@ I wanted a hands-on project to practice **full-stack fundamentals**:
 - Deploying a client (Netlify) + server (Render) that work together.
 
 It’s simple, but it’s a real, working chat app.
-
-</div>
