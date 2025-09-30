@@ -1,4 +1,4 @@
-![Pink Banner](https://singlecolorimage.com/get/fac0e1/1000x100)
+![Pink Banner](https://singlecolorimage.com/get/fac0e1/1000x50)
 
 # MyCuteChat 💬
 
