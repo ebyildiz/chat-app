@@ -1,6 +1,6 @@
 ![Pink Banner](https://singlecolorimage.com/get/fac0e1/1000x50)
 
-# MyCuteChat 💬
+# MyCuteChat ![til](./src/icon.png)
 
 A small, friendly chat app I built to learn and ship something real.  
 The stack: **Vite + React + TypeScript** on the front, **Express + Socket.IO** in the middle, **Postgres (Neon) via Prisma** for data, and **Firebase Auth** for sign-in.
