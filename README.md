@@ -6,12 +6,12 @@ A small, cute chat app I built to learn more about web sockets and api servers, 
 
 🩷 The Stack: 
 
-* FrontEnd: **Vite + React + TypeScript**
-  
+* FrontEnd:
+  - **Vite + React + TypeScript**
 * Backend: 
-- **Express + Socket.IO** in the middle,
-- **Postgres (Neon) via Prisma** for data,
-- **Firebase Auth** for authentication
+  - **Express + Socket.IO** in the middle,
+  - **Postgres (Neon) via Prisma** for data,
+  - **Firebase Auth** for authentication
 
 🩷 Live app: [https://mycutechat.netlify.app](https://mycutechat.netlify.app)  
 🩷 API server: [https://chat-app-brok.onrender.com](https://chat-app-brok.onrender.com)
