@@ -2,7 +2,7 @@
 
 # MyCuteChat ![til](./src/icon.png)
 
-A small, cute chat app I built to learn more about web sockets and api servers, and ship something real.
+A small, cute chat app I built to learn more about web sockets and api servers, and ship a full-stack web application.
 
 🩷 The Stack: 
 
