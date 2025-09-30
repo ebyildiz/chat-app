@@ -1,5 +1,4 @@
-![Pink Banner](https://singlecolorimage.com/get/fac0e1/600x100)
-![Cute Badge](https://img.shields.io/badge/mood-cute-pink)
+![Pink Banner](https://singlecolorimage.com/get/fac0e1/1000x100)
 
 # MyCuteChat 💬
 
