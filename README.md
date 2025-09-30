@@ -2,11 +2,18 @@
 
 # MyCuteChat ![til](./src/icon.png)
 
-A small, friendly chat app I built to learn and ship something real.  
-The stack: **Vite + React + TypeScript** on the front, **Express + Socket.IO** in the middle, **Postgres (Neon) via Prisma** for data, and **Firebase Auth** for sign-in.
+A small, cute chat app I built to learn more about web sockets and api servers, and ship something real.
 
-🌸 Live app: [https://mycutechat.netlify.app](https://mycutechat.netlify.app)  
-🌸 API server: [https://chat-app-brok.onrender.com](https://chat-app-brok.onrender.com)
+🩷 The Stack: 
+
+* FrontEnd: **Vite + React + TypeScript** 
+* Backend: 
+- **Express + Socket.IO** in the middle,
+- **Postgres (Neon) via Prisma** for data,
+- **Firebase Auth** for authentication
+
+🩷 Live app: [https://mycutechat.netlify.app](https://mycutechat.netlify.app)  
+🩷 API server: [https://chat-app-brok.onrender.com](https://chat-app-brok.onrender.com)
 
 ![til](./src/live-demo.gif)
 
